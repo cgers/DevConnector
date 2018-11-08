@@ -14,6 +14,10 @@ const UserSchema = new Schema({
         type: String,
         required: true
     },
+    nacl: {
+        type: String,
+        required: true
+    },
     avatar: {
         type: String,
         required: false
