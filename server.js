@@ -1,11 +1,10 @@
+const bodyParser = require('body-parser');
 const express = require('express');
 const mongoose = require('mongoose');
-
-const user = require('./routes/api/user');
-const profile = require('./routes/api/profile');
+const passport = require('passport');
 const posts = require('./routes/api/posts');
-const bodyParser = require('body-parser');
-
+const profile = require('./routes/api/profile');
+const user = require('./routes/api/user');
 
 const app = express();
 
@@ -23,7 +22,12 @@ mongoose.connect(db)
     .then(() => console.log('Successfully connected to Mongo database.'))
     .catch(error => console.log(error));
 
-app.get('/', (req, res) => res.send('<h1>It works!</h1>'));
+//app.get('/', (req, res) => res.send('<h1>It works!</h1>'));
+
+//Passport middleware
+app.use(passport.initialize());
+//Passport configuration/strategy file
+require('./config/passport')(passport);
 
 const port = process.env.PORT || 5000;
 

@@ -4,7 +4,7 @@ const User = require('../../models/User');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
-//const db = require('./config/keys').mongoURL;
+const passport = require('passport');
 const Secret = require('../../config/security').jtwSecret;
 
 // Note that test in this case will refer to /api/user/test
@@ -145,6 +145,20 @@ router.post('/login2', (req, resp) => {
                 });
             }
         });
+});
+
+
+// @route GET api/users/current
+// @desc Return current user
+// @access Private
+router.get('/current', passport.authenticate('jwt', {
+    session: false
+}), (req, res) => {
+    return res.json({
+        id: req.user.id,
+        name: req.user.name,
+        email: req.user.email
+    });
 });
 
 module.exports = router;
