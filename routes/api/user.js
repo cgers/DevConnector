@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../../models/User');
+const user = require('../../models/user');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -14,7 +14,7 @@ const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
 // Note that test in this case will refer to /api/user/test
-// @route GET api/users/test
+// @route GET api/user/test
 // @desc Test post route
 // @access Public
 router.get('/test', (req, res) =>
@@ -24,7 +24,7 @@ router.get('/test', (req, res) =>
     })
 );
 
-// @route GET api/users/register
+// @route GET api/user/register
 // @desc Register a new user
 // @access Public
 router.post('/register', (req, res) => {
@@ -40,7 +40,7 @@ router.post('/register', (req, res) => {
     }
 
     //check if user exists
-    User.findOne({
+    user.findOne({
         email: req.body.email
     }).then(user => {
         if (user) {
@@ -83,7 +83,7 @@ router.post('/register', (req, res) => {
     });
 });
 
-// @route Post api/users/login
+// @route Post api/user/login
 // @desc Login user (returning a Java Web Token)
 // @access Public
 
@@ -99,7 +99,7 @@ router.post('/login', (req, resp) => {
         return resp.status(400).json(errors);
     }
     //Find the user by e-mail
-    User.findOne({
+    user.findOne({
             email: req.body.email
         })
         //Check for user
@@ -143,7 +143,7 @@ router.post('/login', (req, resp) => {
         });
 });
 
-// @route Post api/users/login2
+// @route Post api/user/login2
 // @desc Login user (returning a Java Web Token)
 // @access Public
 router.post('/login2', (req, resp) => {
@@ -151,7 +151,7 @@ router.post('/login2', (req, resp) => {
     const password = req.body.password;
 
     //Find the user by e-mail
-    User.findOne({
+    user.findOne({
             email
         })
         //Check for user
@@ -170,7 +170,7 @@ router.post('/login2', (req, resp) => {
 });
 
 
-// @route GET api/users/current
+// @route GET api/user/current
 // @desc Return current user
 // @access Private
 router.get('/current', passport.authenticate('jwt', {
