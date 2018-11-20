@@ -53,11 +53,11 @@ const profileSchema = new Schema({
             type: String,
             required: false
         },
-        dateFrom: {
+        datefrom: {
             type: Date,
             required: true
         },
-        dateTo: {
+        dateto: {
             type: Date,
             require: false
         },
@@ -71,23 +71,23 @@ const profileSchema = new Schema({
         }
     }],
     education: [{
-        School: {
+        school: {
             type: String,
             required: true
         },
-        Degree: {
+        degree: {
             type: String,
             required: true
         },
-        FieldOfStudy: {
+        fieldofstudy: {
             type: String,
             required: false
         },
-        dateFrom: {
+        datefrom: {
             type: Date,
             required: true
         },
-        dateTo: {
+        dateto: {
             type: Date,
             require: false
         },

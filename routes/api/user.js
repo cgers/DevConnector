@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const user = require('../../models/user');
+const User = require('../../models/user');
 const gravatar = require('gravatar');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -40,7 +40,7 @@ router.post('/register', (req, res) => {
     }
 
     //check if user exists
-    user.findOne({
+    User.findOne({
         email: req.body.email
     }).then(user => {
         if (user) {

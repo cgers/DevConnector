@@ -1,5 +1,5 @@
 const validator = require('validator');
-const isEmpty = require('./isEmpty');
+const isEmpty = require('./is-empty');
 
 module.exports = function validateProfileInput(data) {
 
@@ -11,7 +11,7 @@ module.exports = function validateProfileInput(data) {
     data.registeredDate = !isEmpty(data.registeredDate) ? data.registeredDate : Date.now();
     data.website = !isEmpty(data.website) ? data.website : '';
 
-    data.linkedIn = !isEmpty(data.linkedin) ? data.linkedin : '';
+    data.linkedin = !isEmpty(data.linkedin) ? data.linkedin : '';
     data.youtube = !isEmpty(data.youtube) ? data.youtube : '';
     data.twitter = !isEmpty(data.twitter) ? data.twitter : '';
     data.instagram = !isEmpty(data.instagram) ? data.instagram : '';
