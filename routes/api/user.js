@@ -123,7 +123,7 @@ router.post('/login', (req, resp) => {
                         issuer: 'Intertek',
                         subject: user.email,
                         audience: 'https://www.intertek.com',
-                        expiresIn: '1h',
+                        expiresIn: '2h',
                         algorithm: 'HS384'
                     };
 
