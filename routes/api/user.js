@@ -59,11 +59,7 @@ router.post('/register', (req, res) => {
 				avatar: avatarUrl
 			});
 
-			const saltSeed = Math.floor(Math.random() * 14 + 1);
-
-			console.log(`Salt seed: ${saltSeed}`);
-
-			bcrypt.genSalt(saltSeed, (err, salt) => {
+			bcrypt.genSalt(10, (err, salt) => {
 				bcrypt.hash(newUser.password, salt, (salterr, hashPassword) => {
 					if (salterr) throw salterr;
 					newUser.password = hashPassword;
@@ -134,29 +130,29 @@ router.post('/login', (req, resp) => {
 // @route Post api/user/login2
 // @desc Login user (returning a Java Web Token)
 // @access Public
-router.post('/login2', (req, resp) => {
-	const email = req.body.email;
-	const password = req.body.password;
+// router.post('/login', (req, resp) => {
+// 	const email = req.body.email;
+// 	const password = req.body.password;
 
-	//Find the user by e-mail
-	user
-		.findOne({
-			email
-		})
-		//Check for user
-		.then((user) => {
-			if (!user) {
-				return resp.status(404).json({
-					message: 'User not found.'
-				});
-			} else {
-				//user found - check password
-				return resp.status(200).json({
-					message: 'Ok'
-				});
-			}
-		});
-});
+// 	//Find the user by e-mail
+// 	user
+// 		.findOne({
+// 			email
+// 		})
+// 		//Check for user
+// 		.then((user) => {
+// 			if (!user) {
+// 				return resp.status(404).json({
+// 					message: 'User not found.'
+// 				});
+// 			} else {
+// 				//user found - check password
+// 				return resp.status(200).json({
+// 					message: 'Ok'
+// 				});
+// 			}
+// 		});
+// });
 
 // @route GET api/user/current
 // @desc Return current user
