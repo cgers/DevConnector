@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { loginUser } from '../../actions/authActions';
-import classnames from 'classnames';
+//import classnames from 'classnames';
+import TextFieldGroup from '../common/textFieldGroup';
 
 class Login extends Component {
 	constructor() {
@@ -57,7 +58,19 @@ class Login extends Component {
 							<h1 className='display-4 text-center'>Log In</h1>
 							<p className='lead text-center'>Sign in to your DevConnector account -</p>
 							<form onSubmit={this.onSubmit}>
-								<div className='form-group'>
+								<TextFieldGroup
+									name='email'
+									placeholder='E-Mail Address'
+									value={this.state.email}
+									label=''
+									error={errors.email}
+									info=''
+									type='email'
+									onChange={this.onChange}
+									required={true}
+									disabled={false}
+								/>
+								{/* <div className='form-group'>
 									<input
 										className={classnames('form-control form-control-lg', {
 											'is-invalid': errors.email
@@ -70,8 +83,20 @@ class Login extends Component {
 										//required
 									/>
 									{errors.email && <div className='invalid-feedback'> {errors.email} </div>}
-								</div>
-								<div className='form-group'>
+								</div> */}
+								<TextFieldGroup
+									name='password'
+									placeholder='Password'
+									value={this.state.password}
+									label=''
+									error={errors.password}
+									info=''
+									type='password'
+									onChange={this.onChange}
+									required={true}
+									disabled={false}
+								/>
+								{/* <div className='form-group'>
 									<input
 										className={classnames('form-control form-control-lg', {
 											'is-invalid': errors.password
@@ -84,7 +109,7 @@ class Login extends Component {
 										//required
 									/>
 									{errors.password && <div className='invalid-feedback'> {errors.password} </div>}
-								</div>
+								</div> */}
 								<input type='submit' className='btn btn-info btn-block mt-4' />
 							</form>
 						</div>
