@@ -13,8 +13,8 @@ import EditProfile from './components/edit-profile/EditProfile';
 import AddExperience from './components/add-credentials/AddExperience';
 import AddEducation from './components/add-credentials/AddEducation';
 import Profile from './components/profile/Profile';
-
 import Profiles from './components/profiles/Profiles';
+import NotFound from './components/notfound/NotFound';
 
 // we need to load switch to wrap the private routes.
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -60,6 +60,8 @@ class App extends Component {
 							<Route exact path='/login' component={Login} />
 							<Route exact path='/profiles' component={Profiles} />
 							<Route exact path='/profile/:handle' component={Profile} />
+
+							<Route exact path='/not-found' component={NotFound} />
 
 							<Switch>
 								<PrivateRoute exact path='/dashboard' component={Dashboard} />
