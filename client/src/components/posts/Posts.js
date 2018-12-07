@@ -18,10 +18,10 @@ class Posts extends Component {
 		}
 		postContent = <PostFeed posts={posts} />;
 		return (
-			<div classname='feed'>
-				<div classname='container'>
-					<div classname='row'>
-						<div classname='col-md-12'>
+			<div className='feed'>
+				<div className='container'>
+					<div className='row'>
+						<div className='col-md-12'>
 							<PostForm />
 							{postContent}
 						</div>
