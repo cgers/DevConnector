@@ -22,9 +22,9 @@ class Education extends Component {
 					{edu.dateto === null ? ' Current' : <Moment format='MMM-YYYY'>{edu.dateto}</Moment>}
 				</td>
 				<td>
-					<buton onClick={this.onDeleteClick.bind(this, edu._id)} className='btn btn-danger'>
+					<button onClick={this.onDeleteClick.bind(this, edu._id)} className='btn btn-danger'>
 						Delete
-					</buton>
+					</button>
 				</td>
 			</tr>
 		));

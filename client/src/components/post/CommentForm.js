@@ -39,9 +39,13 @@ class CommentForm extends Component {
 	}
 	render() {
 		const { errors } = this.state;
+		const { user } = this.props.auth;
+		const postId = this.props._id;
+
+		console.log(`postId=${postId}`);
 
 		return (
-			<div class='post-form mb-3'>
+			<div className='post-form mb-3'>
 				<div className='card card-info'>
 					<div className='card-header bg-info text-white'>Make a comment ...</div>
 					<div className='card-body'>
@@ -71,7 +75,7 @@ const mapStateToProps = (state) => ({
 });
 
 CommentForm.propTypes = {
-	addPost: PropTypes.func.isRequired,
+	addComment: PropTypes.func.isRequired,
 	auth: PropTypes.object.isRequired,
 	errors: PropTypes.object.isRequired,
 	postId: PropTypes.string.isRequired
