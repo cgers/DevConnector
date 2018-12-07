@@ -15,6 +15,7 @@ import AddEducation from './components/add-credentials/AddEducation';
 import Profile from './components/profile/Profile';
 import Profiles from './components/profiles/Profiles';
 import NotFound from './components/notfound/NotFound';
+import Posts from './components/posts/Posts';
 
 // we need to load switch to wrap the private routes.
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -78,6 +79,9 @@ class App extends Component {
 							</Switch>
 							<Switch>
 								<PrivateRoute exact path='/add-education' component={AddEducation} />
+							</Switch>
+							<Switch>
+								<PrivateRoute exact path='/feed' component={Posts} />
 							</Switch>
 						</div>
 						<Footer />

@@ -1,4 +1,4 @@
-import { GET_ERRORS } from '../actions/types';
+import { ADD_POST, GET_POSTS, POST_LOADING, DELETE_POST } from '../actions/types';
 
 //Empty object for the errors
 const intitalState = {
@@ -10,8 +10,28 @@ const intitalState = {
 export default function(state = intitalState, action) {
 	//can include payload
 	switch (action.type) {
-		case GET_ERRORS:
-			return action.payload;
+		case POST_LOADING:
+			return {
+				...state,
+				loading: true
+			};
+		case GET_POSTS:
+			return {
+				...state,
+				posts: action.payload,
+				loading: false
+			};
+		case ADD_POST:
+			return {
+				...state,
+				//       latest post   , existing posts
+				posts: [ action.payload, ...state.posts ]
+			};
+		case DELETE_POST:
+			return {
+				...state,
+				posts: state.posts.filter((post) => post._id !== action.payload)
+			};
 		default:
 			return state;
 	}
