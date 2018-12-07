@@ -1,25 +1,45 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import spinner from '../common/spinner';
+import Spinner from '../common/spinner';
 import { getPost } from '../../actions/postActions';
-
+import PostItem from '../posts/PostItem';
+import { Link } from 'react-router-dom';
+import CommentForm from './CommentForm';
+import CommentFeed from './CommentFeed';
 class Post extends Component {
-	// constructor(props){
-	// super(props);
-	// post = {};
-	// lading = false;
-	//}
-
-	//const {post} = state.post;
 	componentDidMount() {
 		this.props.getPost(this.props.match.params.id);
 	}
 
 	render() {
+		const { post, loading } = this.props.post;
+
+		let postContent;
+		if (postContent === null || loading || Object.keys(post) === 0) {
+			postContent = <Spinner />;
+		} else {
+			postContent = (
+				<div>
+					<PostItem post={post} showActions={false} />
+					<CommentForm postId={post._id} />
+					{/* <CommentFeed postId={post._id} comments={this.props.post.post.comment} /> */}
+				</div>
+			);
+		}
+
 		return (
-			<div>
-				<h1>Post</h1>
+			<div className='post'>
+				<div className='container'>
+					<div className='row'>
+						<div className='col-md-12'>
+							<Link to='/feed' className='btn btn-light mb-3'>
+								Back to feed
+							</Link>
+							{postContent}
+						</div>
+					</div>
+				</div>
 			</div>
 		);
 	}
