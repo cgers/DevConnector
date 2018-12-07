@@ -1,10 +1,10 @@
-import { ADD_POST, GET_POSTS, POST_LOADING, DELETE_POST } from '../actions/types';
+import { ADD_POST, GET_POSTS, POST_LOADING, DELETE_POST, GET_POST } from '../actions/types';
 
 //Empty object for the errors
 const intitalState = {
-	posts: [],
-	post: {},
-	loading: false
+	posts: [], // An array of posts
+	post: {}, // A singular object or post
+	loading: false // Set spinner to not  loading
 };
 
 export default function(state = intitalState, action) {
@@ -21,6 +21,12 @@ export default function(state = intitalState, action) {
 				posts: action.payload,
 				loading: false
 			};
+		case GET_POST:
+			return {
+				...state,
+				post: action.payload,
+				loading: false
+			};
 		case ADD_POST:
 			return {
 				...state,
@@ -30,7 +36,7 @@ export default function(state = intitalState, action) {
 		case DELETE_POST:
 			return {
 				...state,
-				posts: state.posts.filter((post) => post._id !== action.payload)
+				posts: state.posts.filter((post) => post._id !== action.payload) //removing the deleted id from the state, which remains immutable
 			};
 		default:
 			return state;

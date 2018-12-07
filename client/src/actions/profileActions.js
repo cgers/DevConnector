@@ -9,19 +9,19 @@ import {
 import axios from 'axios';
 
 //Get the profile of current user
-export const getCurrentProfile = () => (dispach) => {
-	dispach(setProfileLoading());
+export const getCurrentProfile = () => (dispatch) => {
+	dispatch(setProfileLoading());
 	axios
 		.get('/api/profile')
 		.then((res) =>
-			dispach({
+			dispatch({
 				type: GET_PROFILE,
 				payload: res.data
 			})
 		)
 		.catch((err) =>
 			// return an empty object if there is not a profile
-			dispach({
+			dispatch({
 				type: GET_PROFILE,
 				payload: {}
 			})
@@ -29,39 +29,58 @@ export const getCurrentProfile = () => (dispach) => {
 };
 
 //Get all profiles
-export const getProfiles = () => (dispach) => {
-	dispach(setProfileLoading());
+// Get all profiles
+export const getProfiles = () => (dispatch) => {
+	dispatch(setProfileLoading());
 	axios
 		.get('/api/profile/all')
 		.then((res) =>
-			dispach({
-				type: GET_PROFILES, //If successful we want to get all ProfileS - plural
-				payload: res.data // an array of profiles
+			dispatch({
+				type: GET_PROFILES,
+				payload: res.data
 			})
 		)
 		.catch((err) =>
-			// return an empty object if there is not a profile
-			dispach({
+			dispatch({
 				type: GET_PROFILES,
 				payload: null
 			})
 		);
 };
 
+// export const getProfiles = () => (dispatch) => {
+// 	dispatch(setProfileLoading());
+// 	axios
+// 		.get('/api/profile/all')
+// 		.then((res) =>
+// 			dispatch({
+// 				type: GET_PROFILES, //If successful we want to get all ProfileS - plural
+// 				payload: res.data // an array of profiles
+// 			})
+// 		)
+// 		.catch((err) =>
+// 			// return an empty object if there is not a profile
+// 			dispatch({
+// 				type: GET_PROFILES,
+// 				payload: null
+// 			})
+// 		);
+// };
+
 //Get all get Profile by Handle
-export const getProfilebyHandle = (handle) => (dispach) => {
-	dispach(setProfileLoading());
+export const getProfilebyHandle = (handle) => (dispatch) => {
+	dispatch(setProfileLoading());
 	axios
 		.get(`/api/profile/handle/${handle}`)
 		.then((res) =>
-			dispach({
+			dispatch({
 				type: GET_PROFILE,
 				payload: res.data
 			})
 		)
 		.catch((err) =>
 			// return an empty object if there is not a profile
-			dispach({
+			dispatch({
 				type: GET_PROFILE,
 				payload: null
 			})
