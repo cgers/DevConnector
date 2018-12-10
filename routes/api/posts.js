@@ -237,13 +237,15 @@ router.post('/unlike/:id', passport.authenticate('jwt', { session: false }), (re
 // @desc    Add comment to post
 // @access  Private
 router.post('/comment/:id', passport.authenticate('jwt', { session: false }), (req, res) => {
-	const { errors, isValid } = validatePostInput(req.body);
+	const { errors, isValid } = ValidatePostInput(req.body);
 
 	// Check Validation
 	if (!isValid) {
 		// If any errors, send 400 with errors object
 		return res.status(400).json(errors);
 	}
+
+	console.log(`posts: /posts/comment/${req.params.id} -> Text: ${req.body.text}`);
 
 	Post.findById(req.params.id)
 		.then((post) => {
@@ -255,12 +257,12 @@ router.post('/comment/:id', passport.authenticate('jwt', { session: false }), (r
 			};
 
 			// Add to comments array
-			post.comments.unshift(newComment);
+			post.comment.unshift(newComment);
 
 			// Save
 			post.save().then((post) => res.json(post));
 		})
-		.catch((err) => res.status(404).json({ postnotfound: 'No post found' }));
+		.catch((err) => res.status(404).json({ PostNotFound: 'No post found' }));
 });
 
 // @route   DELETE api/posts/comment/:post_id/:comment_id
@@ -272,8 +274,6 @@ router.delete(
 		session: false
 	}),
 	(req, res) => {
-		console.log('236');
-
 		Post.findById(req.params.id)
 			.then((post) => {
 				//Check if comment exists.

@@ -9,22 +9,25 @@ const user = require('./routes/api/user');
 const app = express();
 
 // Body Parser middleware
-app.use(bodyParser.urlencoded({
-    extended: false
-}));
+app.use(
+	bodyParser.urlencoded({
+		extended: false
+	})
+);
 app.use(bodyParser.json());
 
 // DB Configuration
 const db = require('./config/keys').mongoURL;
 
 //Connect to Mongo DB
-mongoose.connect(db, {
-        useNewUrlParser: true
-    })
-    .then(() => console.log('Successfully connected to Mongo database.'))
-    .catch(error => console.log(error));
+mongoose
+	.connect(db, {
+		useNewUrlParser: true
+	})
+	.then(() => console.log('Successfully connected to Mongo database.'))
+	.catch((error) => console.log(error));
 
-//app.get('/', (req, res) => res.send('<h1>It works!</h1>'));
+app.get('/', (req, res) => res.send('<h1>API services. It works!</h1>'));
 
 //Passport middleware
 app.use(passport.initialize());

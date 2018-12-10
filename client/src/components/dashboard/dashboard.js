@@ -8,7 +8,7 @@ import ProfileActions from './ProfileActions';
 import Experience from './Experience';
 import Education from './Education';
 
-class dashboard extends Component {
+class Dashboard extends Component {
 	//We want getCurrentProfile to be called immediately
 	componentDidMount() {
 		this.props.getCurrentProfile();
@@ -22,7 +22,9 @@ class dashboard extends Component {
 	render() {
 		const { user } = this.props.auth;
 		const { profile, loading } = this.props.profile;
+
 		let dashboardContent;
+
 		if (profile === null || loading) {
 			dashboardContent = <Spinner />;
 		} else {
@@ -72,7 +74,7 @@ class dashboard extends Component {
 	}
 }
 
-dashboard.propTypes = {
+Dashboard.propTypes = {
 	getCurrentProfile: PropTypes.func.isRequired,
 	auth: PropTypes.object.isRequired,
 	profile: PropTypes.object.isRequired,
@@ -85,4 +87,4 @@ const mapStateToProps = (state) => ({
 	auth: state.auth
 });
 
-export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(dashboard);
+export default connect(mapStateToProps, { getCurrentProfile, deleteAccount })(Dashboard);

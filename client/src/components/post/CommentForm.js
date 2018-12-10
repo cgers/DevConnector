@@ -37,15 +37,15 @@ class CommentForm extends Component {
 			this.setState({ errors: newProps.errors });
 		}
 	}
+
 	render() {
 		const { errors } = this.state;
 		const { user } = this.props.auth;
-		const postId = this.props._id;
-
-		console.log(`postId=${postId}`);
+		const { postId } = this.props;
 
 		return (
 			<div className='post-form mb-3'>
+				{/* <h1>CommentForm PostId = {this.props.postId} </h1> */}
 				<div className='card card-info'>
 					<div className='card-header bg-info text-white'>Make a comment ...</div>
 					<div className='card-body'>
