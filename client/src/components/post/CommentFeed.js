@@ -9,12 +9,6 @@ class CommentFeed extends Component {
 		return comments.map((comment) => <CommentItem key={comment._id} comment={comment} postId={postId} />);
 	}
 }
-// class CommentFeed extends Component {
-// 	render() {
-// 		const { comments, postId } = this.props;
-// 		return comments.map((com) => <CommentItem key={com._id} comment={com} postId={postId} />);
-// 	}
-// }
 
 CommentFeed.propTypes = {
 	comments: PropTypes.array.isRequired,
